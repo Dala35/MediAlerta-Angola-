@@ -4,101 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MediAlerta Angola</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0fff4;
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
-    header, footer {
-      background-color: #007f5f;
-      color: white;
-      padding: 15px;
-      text-align: center;
-    }
-    main {
-      padding: 20px;
-    }
-    .box {
-      background: white;
-      padding: 20px;
-      margin: 15px auto;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      max-width: 600px;
-    }
-    input, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    button {
-      background-color: #007f5f;
-      color: white;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
-    }
-    .error {
-      color: red;
-      margin-top: 10px;
-    }
-    h2 {
-      text-align: center;
-      color: #007f5f;
-    }
-    .alerta {
-      border: 2px solid #ff0000;
-      background-color: #ffe0e0;
-      padding: 15px;
-      margin: 10px 0;
-      border-radius: 8px;
-    }
-    .urgente {
-      background-color: #ffcccc;
-    }
-    .normal {
-      background-color: #fff5f5;
-    }
-    .search-box {
-      margin-top: 20px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-    th, td {
-      padding: 10px;
-      border: 1px solid #ccc;
-      text-align: left;
-    }
-    th {
-      background-color: #e6f7f1;
-    }
-    .botao-sair {
-      background-color: #ff4d4d;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      float: right;
-    }
-    .botao-sair:hover {
-      background-color: #cc0000;
-    }
-  </style>
+  <!-- Referência ao arquivo CSS externo -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Referência ao favicon -->
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
   <header>
     <h1>MediAlerta Angola</h1>
   </header>
-
+  
   <main>
     <!-- LOGIN -->
     <section class="box" id="loginSection">
@@ -129,118 +44,13 @@
       <h2>Alertas de Emergência</h2>
       <div id="alertas"></div>
     </section>
-
-    <!-- ADMINISTRATIVO -->
-    <section class="box" id="adminSection" style="display: none;">
-      <header>
-        <h1>Painel Administrativo</h1>
-        <button class="botao-sair" onclick="sair()">Sair</button>
-      </header>
-      <div class="container">
-        <div class="card">
-          <h2>Gestão de Utilizadores</h2>
-          <table>
-            <tr><th>Nome</th><th>Função</th><th>Status</th></tr>
-            <tr><td>Dra. Ana Lemos</td><td>Médica</td><td>Ativo</td></tr>
-            <tr><td>Enf. João Pedro</td><td>Enfermeiro</td><td>Ativo</td></tr>
-            <tr><td>Dr. Carlos Pinto</td><td>Médico</td><td>Inativo</td></tr>
-          </table>
-        </div>
-        <div class="card">
-          <h2>Estatísticas do Sistema</h2>
-          <p>Pacientes monitorados: <strong>35</strong></p>
-          <p>Alertas emitidos nas últimas 24h: <strong>7</strong></p>
-          <p>Utilizadores ativos: <strong>12</strong></p>
-        </div>
-        <div class="card">
-          <h2>Configuração de Alertas</h2>
-          <p>Parâmetros de notificação: personalizáveis via sistema interno.</p>
-          <ul>
-            <li>BPM elevado: >100</li>
-            <li>Pressão arterial baixa: <90/60</li>
-            <li>Inatividade prolongada: >30 minutos</li>
-          </ul>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer>
     MediAlerta Angola © 2025
   </footer>
 
-  <script>
-    const usuarioSimulado = {
-      email: "admin@medialerta.ao",
-      senha: "123456"
-    };
-
-    const pacientes = [
-      { nome: "Ana Pedro", idade: 54, diagnostico: "Hipertensão" },
-      { nome: "Carlos João", idade: 67, diagnostico: "Diabetes" },
-      { nome: "Maria Gomes", idade: 72, diagnostico: "Problemas Cardíacos" }
-    ];
-
-    const alertas = [
-      { paciente: "Joana Pedro", tipo: "Queda na enfermaria", urgencia: true, hora: "14:23" },
-      { paciente: "Carlos Manuel", tipo: "Pressão arterial elevada", urgencia: false, hora: "15:01" },
-      { paciente: "Ana Souza", tipo: "Ataque epiléptico", urgencia: true, hora: "15:14" }
-    ];
-
-    function logar() {
-      const email = document.getElementById("email").value;
-      const senha = document.getElementById("senha").value;
-      const erro = document.getElementById("mensagemErro");
-
-      if (email === usuarioSimulado.email && senha === usuarioSimulado.senha) {
-        document.getElementById("loginSection").style.display = "none";
-        document.getElementById("pacientesSection").style.display = "block";
-        document.getElementById("alertasSection").style.display = "block";
-        document.getElementById("adminSection").style.display = "block";
-        listarPacientes();
-        renderizarAlertas();
-      } else {
-        erro.innerText = "Credenciais inválidas. Tente novamente.";
-      }
-    }
-
-    function listarPacientes() {
-      const lista = document.getElementById("listaPacientes");
-      lista.innerHTML = "";
-      pacientes.forEach(p => {
-        const linha = `<tr><td>${p.nome}</td><td>${p.idade}</td><td>${p.diagnostico}</td></tr>`;
-        lista.innerHTML += linha;
-      });
-    }
-
-    function filtrarPacientes() {
-      const nomeFiltro = document.getElementById("filtroNome").value.toLowerCase();
-      const diagFiltro = document.getElementById("filtroDiagnostico").value.toLowerCase();
-      const lista = document.getElementById("listaPacientes");
-      lista.innerHTML = "";
-      pacientes.forEach(p => {
-        if (p.nome.toLowerCase().includes(nomeFiltro) && p.diagnostico.toLowerCase().includes(diagFiltro)) {
-          const linha = `<tr><td>${p.nome}</td><td>${p.idade}</td><td>${p.diagnostico}</td></tr>`;
-          lista.innerHTML += linha;
-        }
-      });
-    }
-
-    function renderizarAlertas() {
-      const container = document.getElementById("alertas");
-      container.innerHTML = "";
-      alertas.forEach(alerta => {
-        const div = document.createElement("div");
-        div.className = "alerta " + (alerta.urgencia ? "urgente" : "normal");
-        div.innerHTML = `<strong>Paciente:</strong> ${alerta.paciente}<br><strong>Alerta:</strong> ${alerta.tipo}<br><strong>Hora:</strong> ${alerta.hora}`;
-        container.appendChild(div);
-      });
-    }
-
-    function sair() {
-      window.location.href = "index.html"; // Redirecionar para a página de login
-    }
-  </script>
+  <!-- Referência ao arquivo JS externo -->
+  <script src="js/script.js"></script>
 </body>
 </html>
-       
