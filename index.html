@@ -1,34 +1,59 @@
-<!DOCTYPE html>
-<html lang="pt">
+<!DOCTYPE html><html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MediAlerta Angola</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MediAlerta Angola</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f0fff4; margin: 0; padding: 0; }
+    header, footer {
+      background-color: #007f5f;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    main { padding: 20px; }
+    .box {
+      background: white;
+      padding: 20px;
+      margin: 15px auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 600px;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #007f5f;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+    .error { color: red; margin-top: 10px; }
+    h2 { text-align: center; color: #007f5f; }
+    .alerta {
+      border: 2px solid #ff0000;
+      background-color: #ffe0e0;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+    .urgente { background-color: #ffcccc; }
+    .normal { background-color: #fff5f5; }
+    .search-box { margin-top: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { padding: 10px; border: 1px solid #ccc; text-align: left; }
+  </style>
 </head>
 <body>
-    <header>
-        <img src="assets/logo.png" alt="MediAlerta Angola" class="logo">
-        <h1>MediAlerta Angola</h1>
-        <p>Sistema Integrado de Alerta e Emergência Médica</p>
-    </header>
-    <main>
-        <section class="login">
-            <h2>Login</h2>
-            <form>
-                <input type="text" placeholder="Nome de usuário" required>
-                <input type="password" placeholder="Senha" required>
-                <button type="submit">Entrar</button>
-            </form>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2025 MediAlerta Angola. Todos os direitos reservados.</p>
-    </footer>
-    <script src="js/script.js"></script>
-</body>
-    
-  <main>
+  <header>
+    <h1>MediAlerta Angola</h1>
+  </header>  <main>
     <!-- LOGIN -->
     <section class="box" id="loginSection">
       <h2>Login</h2>
@@ -36,35 +61,30 @@
       <input type="password" id="senha" placeholder="Senha">
       <button onclick="logar()">Entrar</button>
       <div class="error" id="mensagemErro"></div>
-    </section>
+    </section><!-- PACIENTES -->
+<section class="box" id="pacientesSection" style="display: none;">
+  <h2>Lista de Pacientes</h2>
+  <div class="search-box">
+    <input type="text" id="filtroNome" placeholder="Filtrar por nome" oninput="filtrarPacientes()">
+    <input type="text" id="filtroDiagnostico" placeholder="Filtrar por diagnóstico" oninput="filtrarPacientes()">
+  </div>
+  <table>
+    <thead>
+      <tr><th>Nome</th><th>Idade</th><th>Diagnóstico</th></tr>
+    </thead>
+    <tbody id="listaPacientes"></tbody>
+  </table>
+</section>
 
-    <!-- PACIENTES -->
-    <section class="box" id="pacientesSection" style="display: none;">
-      <h2>Lista de Pacientes</h2>
-      <div class="search-box">
-        <input type="text" id="filtroNome" placeholder="Filtrar por nome" oninput="filtrarPacientes()">
-        <input type="text" id="filtroDiagnostico" placeholder="Filtrar por diagnóstico" oninput="filtrarPacientes()">
-      </div>
-      <table>
-        <thead>
-          <tr><th>Nome</th><th>Idade</th><th>Diagnóstico</th></tr>
-        </thead>
-        <tbody id="listaPacientes"></tbody>
-      </table>
-    </section>
+<!-- ALERTAS -->
+<section class="box" id="alertasSection" style="display: none;">
+  <h2>Alertas de Emergência</h2>
+  <div id="alertas"></div>
+</section>
 
-    <!-- ALERTAS -->
-    <section class="box" id="alertasSection" style="display: none;">
-      <h2>Alertas de Emergência</h2>
-      <div id="alertas"></div>
-    </section>
-  </main>
-
-  <footer>
+  </main>  <footer>
     MediAlerta Angola © 2025
-  </footer>
-
-  <script>
+  </footer>  <script>
     const usuarioSimulado = {
       email: "admin@medialerta.ao",
       senha: "123456"
@@ -130,6 +150,5 @@
         container.appendChild(div);
       });
     }
-  </script>
-</body>
+  </script></body>
 </html>
