@@ -151,4 +151,121 @@
       });
     }
   </script></body>
+  <!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Administrativo - MediAlerta</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f4fdf8;
+      color: #333;
+    }
+    header {
+      background-color: #007f5f;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      padding: 20px;
+    }
+    .card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      margin-bottom: 20px;
+    }
+    .card h2 {
+      color: #007f5f;
+      margin-bottom: 10px;
+    }
+    .botao-sair {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      float: right;
+    }
+    .botao-sair:hover {
+      background-color: #cc0000;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #e6f7f1;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Painel Administrativo</h1>
+    <button class="botao-sair" onclick="sair()">Sair</button>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <h2>Gestão de Utilizadores</h2>
+      <table>
+        <tr>
+          <th>Nome</th>
+          <th>Função</th>
+          <th>Status</th>
+        </tr>
+        <tr>
+          <td>Dra. Ana Lemos</td>
+          <td>Médica</td>
+          <td>Ativo</td>
+        </tr>
+        <tr>
+          <td>Enf. João Pedro</td>
+          <td>Enfermeiro</td>
+          <td>Ativo</td>
+        </tr>
+        <tr>
+          <td>Dr. Carlos Pinto</td>
+          <td>Médico</td>
+          <td>Inativo</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Estatísticas do Sistema</h2>
+      <p>Pacientes monitorados: <strong>35</strong></p>
+      <p>Alertas emitidos nas últimas 24h: <strong>7</strong></p>
+      <p>Utilizadores ativos: <strong>12</strong></p>
+    </div>
+
+    <div class="card">
+      <h2>Configuração de Alertas</h2>
+      <p>Parâmetros de notificação: personalizáveis via sistema interno.</p>
+      <ul>
+        <li>BPM elevado: >100</li>
+        <li>Pressão arterial baixa: <90/60</li>
+        <li>Inatividade prolongada: >30 minutos</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    function sair() {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
+
 </html>
