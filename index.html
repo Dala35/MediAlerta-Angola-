@@ -27,4 +27,109 @@
     </footer>
     <script src="js/script.js"></script>
 </body>
+    
+  <main>
+    <!-- LOGIN -->
+    <section class="box" id="loginSection">
+      <h2>Login</h2>
+      <input type="email" id="email" placeholder="E-mail">
+      <input type="password" id="senha" placeholder="Senha">
+      <button onclick="logar()">Entrar</button>
+      <div class="error" id="mensagemErro"></div>
+    </section>
+
+    <!-- PACIENTES -->
+    <section class="box" id="pacientesSection" style="display: none;">
+      <h2>Lista de Pacientes</h2>
+      <div class="search-box">
+        <input type="text" id="filtroNome" placeholder="Filtrar por nome" oninput="filtrarPacientes()">
+        <input type="text" id="filtroDiagnostico" placeholder="Filtrar por diagnóstico" oninput="filtrarPacientes()">
+      </div>
+      <table>
+        <thead>
+          <tr><th>Nome</th><th>Idade</th><th>Diagnóstico</th></tr>
+        </thead>
+        <tbody id="listaPacientes"></tbody>
+      </table>
+    </section>
+
+    <!-- ALERTAS -->
+    <section class="box" id="alertasSection" style="display: none;">
+      <h2>Alertas de Emergência</h2>
+      <div id="alertas"></div>
+    </section>
+  </main>
+
+  <footer>
+    MediAlerta Angola © 2025
+  </footer>
+
+  <script>
+    const usuarioSimulado = {
+      email: "admin@medialerta.ao",
+      senha: "123456"
+    };
+
+    const pacientes = [
+      { nome: "Ana Pedro", idade: 54, diagnostico: "Hipertensão" },
+      { nome: "Carlos João", idade: 67, diagnostico: "Diabetes" },
+      { nome: "Maria Gomes", idade: 72, diagnostico: "Problemas Cardíacos" }
+    ];
+
+    const alertas = [
+      { paciente: "Joana Pedro", tipo: "Queda na enfermaria", urgencia: true, hora: "14:23" },
+      { paciente: "Carlos Manuel", tipo: "Pressão arterial elevada", urgencia: false, hora: "15:01" },
+      { paciente: "Ana Souza", tipo: "Ataque epiléptico", urgencia: true, hora: "15:14" }
+    ];
+
+    function logar() {
+      const email = document.getElementById("email").value;
+      const senha = document.getElementById("senha").value;
+      const erro = document.getElementById("mensagemErro");
+
+      if (email === usuarioSimulado.email && senha === usuarioSimulado.senha) {
+        document.getElementById("loginSection").style.display = "none";
+        document.getElementById("pacientesSection").style.display = "block";
+        document.getElementById("alertasSection").style.display = "block";
+        listarPacientes();
+        renderizarAlertas();
+      } else {
+        erro.innerText = "Credenciais inválidas. Tente novamente.";
+      }
+    }
+
+    function listarPacientes() {
+      const lista = document.getElementById("listaPacientes");
+      lista.innerHTML = "";
+      pacientes.forEach(p => {
+        const linha = `<tr><td>${p.nome}</td><td>${p.idade}</td><td>${p.diagnostico}</td></tr>`;
+        lista.innerHTML += linha;
+      });
+    }
+
+    function filtrarPacientes() {
+      const nomeFiltro = document.getElementById("filtroNome").value.toLowerCase();
+      const diagFiltro = document.getElementById("filtroDiagnostico").value.toLowerCase();
+      const lista = document.getElementById("listaPacientes");
+      lista.innerHTML = "";
+      pacientes.forEach(p => {
+        if (p.nome.toLowerCase().includes(nomeFiltro) && p.diagnostico.toLowerCase().includes(diagFiltro)) {
+          const linha = `<tr><td>${p.nome}</td><td>${p.idade}</td><td>${p.diagnostico}</td></tr>`;
+          lista.innerHTML += linha;
+        }
+      });
+    }
+
+    function renderizarAlertas() {
+      const container = document.getElementById("alertas");
+      container.innerHTML = "";
+      alertas.forEach(alerta => {
+        const div = document.createElement("div");
+        div.className = "alerta " + (alerta.urgencia ? "urgente" : "normal");
+        div.innerHTML = `<strong>Paciente:</strong> ${alerta.paciente}<br><strong>Alerta:</strong> ${alerta.tipo}<br><strong>Hora:</strong> ${alerta.hora}`;
+        container.appendChild(div);
+      });
+    }
+  </script>
+</body>
 </html>
