@@ -1,17 +1,26 @@
-<!DOCTYPE html><html lang="pt">
+<!DOCTYPE html>
+<html lang="pt">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MediAlerta Angola</title>
   <style>
-    body { font-family: Arial, sans-serif; background-color: #f0fff4; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0fff4;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
     header, footer {
       background-color: #007f5f;
       color: white;
       padding: 15px;
       text-align: center;
     }
-    main { padding: 20px; }
+    main {
+      padding: 20px;
+    }
     .box {
       background: white;
       padding: 20px;
@@ -34,8 +43,14 @@
       border: none;
       cursor: pointer;
     }
-    .error { color: red; margin-top: 10px; }
-    h2 { text-align: center; color: #007f5f; }
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+    h2 {
+      text-align: center;
+      color: #007f5f;
+    }
     .alerta {
       border: 2px solid #ff0000;
       background-color: #ffe0e0;
@@ -43,17 +58,48 @@
       margin: 10px 0;
       border-radius: 8px;
     }
-    .urgente { background-color: #ffcccc; }
-    .normal { background-color: #fff5f5; }
-    .search-box { margin-top: 20px; }
-    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-    th, td { padding: 10px; border: 1px solid #ccc; text-align: left; }
+    .urgente {
+      background-color: #ffcccc;
+    }
+    .normal {
+      background-color: #fff5f5;
+    }
+    .search-box {
+      margin-top: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    th {
+      background-color: #e6f7f1;
+    }
+    .botao-sair {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      float: right;
+    }
+    .botao-sair:hover {
+      background-color: #cc0000;
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>MediAlerta Angola</h1>
-  </header>  <main>
+  </header>
+
+  <main>
     <!-- LOGIN -->
     <section class="box" id="loginSection">
       <h2>Login</h2>
@@ -61,30 +107,69 @@
       <input type="password" id="senha" placeholder="Senha">
       <button onclick="logar()">Entrar</button>
       <div class="error" id="mensagemErro"></div>
-    </section><!-- PACIENTES -->
-<section class="box" id="pacientesSection" style="display: none;">
-  <h2>Lista de Pacientes</h2>
-  <div class="search-box">
-    <input type="text" id="filtroNome" placeholder="Filtrar por nome" oninput="filtrarPacientes()">
-    <input type="text" id="filtroDiagnostico" placeholder="Filtrar por diagnóstico" oninput="filtrarPacientes()">
-  </div>
-  <table>
-    <thead>
-      <tr><th>Nome</th><th>Idade</th><th>Diagnóstico</th></tr>
-    </thead>
-    <tbody id="listaPacientes"></tbody>
-  </table>
-</section>
+    </section>
 
-<!-- ALERTAS -->
-<section class="box" id="alertasSection" style="display: none;">
-  <h2>Alertas de Emergência</h2>
-  <div id="alertas"></div>
-</section>
+    <!-- PACIENTES -->
+    <section class="box" id="pacientesSection" style="display: none;">
+      <h2>Lista de Pacientes</h2>
+      <div class="search-box">
+        <input type="text" id="filtroNome" placeholder="Filtrar por nome" oninput="filtrarPacientes()">
+        <input type="text" id="filtroDiagnostico" placeholder="Filtrar por diagnóstico" oninput="filtrarPacientes()">
+      </div>
+      <table>
+        <thead>
+          <tr><th>Nome</th><th>Idade</th><th>Diagnóstico</th></tr>
+        </thead>
+        <tbody id="listaPacientes"></tbody>
+      </table>
+    </section>
 
-  </main>  <footer>
+    <!-- ALERTAS -->
+    <section class="box" id="alertasSection" style="display: none;">
+      <h2>Alertas de Emergência</h2>
+      <div id="alertas"></div>
+    </section>
+
+    <!-- ADMINISTRATIVO -->
+    <section class="box" id="adminSection" style="display: none;">
+      <header>
+        <h1>Painel Administrativo</h1>
+        <button class="botao-sair" onclick="sair()">Sair</button>
+      </header>
+      <div class="container">
+        <div class="card">
+          <h2>Gestão de Utilizadores</h2>
+          <table>
+            <tr><th>Nome</th><th>Função</th><th>Status</th></tr>
+            <tr><td>Dra. Ana Lemos</td><td>Médica</td><td>Ativo</td></tr>
+            <tr><td>Enf. João Pedro</td><td>Enfermeiro</td><td>Ativo</td></tr>
+            <tr><td>Dr. Carlos Pinto</td><td>Médico</td><td>Inativo</td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <h2>Estatísticas do Sistema</h2>
+          <p>Pacientes monitorados: <strong>35</strong></p>
+          <p>Alertas emitidos nas últimas 24h: <strong>7</strong></p>
+          <p>Utilizadores ativos: <strong>12</strong></p>
+        </div>
+        <div class="card">
+          <h2>Configuração de Alertas</h2>
+          <p>Parâmetros de notificação: personalizáveis via sistema interno.</p>
+          <ul>
+            <li>BPM elevado: >100</li>
+            <li>Pressão arterial baixa: <90/60</li>
+            <li>Inatividade prolongada: >30 minutos</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
     MediAlerta Angola © 2025
-  </footer>  <script>
+  </footer>
+
+  <script>
     const usuarioSimulado = {
       email: "admin@medialerta.ao",
       senha: "123456"
@@ -111,6 +196,7 @@
         document.getElementById("loginSection").style.display = "none";
         document.getElementById("pacientesSection").style.display = "block";
         document.getElementById("alertasSection").style.display = "block";
+        document.getElementById("adminSection").style.display = "block";
         listarPacientes();
         renderizarAlertas();
       } else {
@@ -150,122 +236,11 @@
         container.appendChild(div);
       });
     }
-  </script></body>
-  <!DOCTYPE html>
-<html lang="pt">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Painel Administrativo - MediAlerta</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background-color: #f4fdf8;
-      color: #333;
-    }
-    header {
-      background-color: #007f5f;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    .container {
-      padding: 20px;
-    }
-    .card {
-      background-color: white;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-      margin-bottom: 20px;
-    }
-    .card h2 {
-      color: #007f5f;
-      margin-bottom: 10px;
-    }
-    .botao-sair {
-      background-color: #ff4d4d;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      float: right;
-    }
-    .botao-sair:hover {
-      background-color: #cc0000;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    th, td {
-      padding: 10px;
-      border-bottom: 1px solid #ddd;
-    }
-    th {
-      background-color: #e6f7f1;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Painel Administrativo</h1>
-    <button class="botao-sair" onclick="sair()">Sair</button>
-  </header>
 
-  <div class="container">
-    <div class="card">
-      <h2>Gestão de Utilizadores</h2>
-      <table>
-        <tr>
-          <th>Nome</th>
-          <th>Função</th>
-          <th>Status</th>
-        </tr>
-        <tr>
-          <td>Dra. Ana Lemos</td>
-          <td>Médica</td>
-          <td>Ativo</td>
-        </tr>
-        <tr>
-          <td>Enf. João Pedro</td>
-          <td>Enfermeiro</td>
-          <td>Ativo</td>
-        </tr>
-        <tr>
-          <td>Dr. Carlos Pinto</td>
-          <td>Médico</td>
-          <td>Inativo</td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="card">
-      <h2>Estatísticas do Sistema</h2>
-      <p>Pacientes monitorados: <strong>35</strong></p>
-      <p>Alertas emitidos nas últimas 24h: <strong>7</strong></p>
-      <p>Utilizadores ativos: <strong>12</strong></p>
-    </div>
-
-    <div class="card">
-      <h2>Configuração de Alertas</h2>
-      <p>Parâmetros de notificação: personalizáveis via sistema interno.</p>
-      <ul>
-        <li>BPM elevado: >100</li>
-        <li>Pressão arterial baixa: <90/60</li>
-        <li>Inatividade prolongada: >30 minutos</li>
-      </ul>
-    </div>
-  </div>
-
-  <script>
     function sair() {
-      window.location.href = "index.html";
+      window.location.href = "index.html"; // Redirecionar para a página de login
     }
   </script>
 </body>
 </html>
-
-</html>
+       
