@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+header {
+    background-color: #008080;
+    color: white;
+    padding: 20px;
+}
+.logo {
+    width: 80px;
+}
+.login {
+    margin: 40px auto;
+    max-width: 300px;
+}
+.login form input {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px;
+}
+.login form button {
+    padding: 10px;
+    background-color: #00ced1;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+footer {
+    background-color: #e0ffff;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
